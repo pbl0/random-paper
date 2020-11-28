@@ -1,0 +1,67 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/"></ion-back-button>
+		</ion-buttons>
+		<ion-title> Reddit Settings </ion-title>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<ion-label>Sorting</ion-label>
+			<ion-select [(ngModel)]="settings.sorting" placeholder="Select One">
+			  <ion-select-option value="hot">Hot</ion-select-option>
+			  <ion-select-option value="new">New</ion-select-option>
+			  <ion-select-option value="controversial">Controversial</ion-select-option>
+			  <ion-select-option value="top">Top</ion-select-option>
+			  <ion-select-option value="rising">Rising</ion-select-option>
+			  <ion-select-option value="random">Random</ion-select-option>
+			</ion-select>
+		  </ion-item>
+		<ion-item>
+			<ion-label position="floating">Limit</ion-label>
+			<ion-input
+				[(ngModel)]="settings.limit"
+				type="number"
+			></ion-input>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list>
+		<ion-item>
+			<ion-label position="floating">Add subreddit</ion-label>
+			<ion-input
+				(keyup.enter)="addSub()"
+				[(ngModel)]="sub.name"
+				type="text"
+			></ion-input>
+		</ion-item>
+	</ion-list>
+	<ion-list *ngIf="settings.subs.length">
+		<ion-list-header *ngIf="settings.subs.length">
+			<ion-label>Subreddits</ion-label>
+		</ion-list-header>
+		<ion-item-sliding
+			class="animate__animated animate__fadeInDown"
+			*ngFor="let item of settings.subs; let i = index"
+		>
+			<ion-item>
+				<ion-checkbox
+					(ionChange)="changeCheck(item)"
+					[(ngModel)]="item.on"
+					slot="start"
+				></ion-checkbox>
+				<ion-label> {{item.name}} </ion-label>
+			</ion-item>
+
+			<ion-item-options side="end">
+				<ion-item-option (click)="delete(i)" color="danger">
+					<ion-icon slot="icon-only" name="close"></ion-icon>
+				</ion-item-option>
+			</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+</ion-content>

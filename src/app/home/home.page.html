@@ -1,20 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
+  
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  
+  <ion-img *ngIf="wallpaper" [src]="wallpaper.url"></ion-img> 
+  <!-- <ion-img *ngIf="file.dataDirectory  + 'wall.png'" [src]="getPath(file.externalApplicationStorageDirectory + 'wall.png')"></ion-img> -->
+
+    
+  
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button [color]="!buttonActive ? 'primary' : 'medium'" (click)="onClickRandom()">
+      <ion-icon name="shuffle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="clickChangePaper()" color="light">
+        <ion-icon name="image-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="debug()" color="light">
+        <ion-icon name="heart"></ion-icon>
+      </ion-fab-button>
+      
+      <ion-fab-button color="light" onclick="window.open('https://www.github.com/pbl0', '_system', 'location=yes'); return false;">
+        <ion-icon name="logo-github"></ion-icon>
+      </ion-fab-button>
+        
+      <ion-fab-button [routerLink]="['/settings']" color="light">
+        <ion-icon name="settings"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  
 </ion-content>

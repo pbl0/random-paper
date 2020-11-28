@@ -1,0 +1,13 @@
+{
+  "appId": "tech.pablobls.randomPaper",
+  "appName": "randomPaper",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "linuxAndroidStudioPath": "/home/pablo/.android-studio/bin/studio.sh"
+}

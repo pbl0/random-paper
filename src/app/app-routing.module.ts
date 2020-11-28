@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'donate',
+    loadChildren: () => import('./donate/donate.module').then( m => m.DonatePageModule)
+  },
+  {
+    path: 'reddit-settings',
+    loadChildren: () => import('./reddit-settings/reddit-settings.module').then( m => m.RedditSettingsPageModule)
+  },
 ];
 
 @NgModule({

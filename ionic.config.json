@@ -1,5 +1,8 @@
 {
   "name": "randomPaper",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }

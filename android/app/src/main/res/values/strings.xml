@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">randomPaper</string>
+    <string name="title_activity_main">randomPaper</string>
+    <string name="package_name">tech.pablobls.randomPaper</string>
+    <string name="custom_url_scheme">tech.pablobls.randomPaper</string>
+</resources>
