@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { SettingsService } from '../services/settings.service';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.page.html',
-  styleUrls: ['./settings.page.scss'],
+	selector: "app-settings",
+	templateUrl: "./settings.page.html",
+	styleUrls: ["./settings.page.scss"],
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
+	constructor(public settingsService: SettingsService) {
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {}
 
+	onIonChange() {
+		this.setStorage();
+	}
+
+	setStorage() {
+    this.settingsService.setStorage();
+	}
 }

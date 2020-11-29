@@ -9,13 +9,13 @@
   </ion-header>
 
   
-  <ion-img *ngIf="wallpaper" [src]="wallpaper.url"></ion-img> 
+  <ion-img #img (ionImgWillLoad)="presentLoading()" (ionImgDidLoad)="loadingController.dismiss()" *ngIf="wallpaper" [src]="wallpaper.url"></ion-img> 
   <!-- <ion-img *ngIf="file.dataDirectory  + 'wall.png'" [src]="getPath(file.externalApplicationStorageDirectory + 'wall.png')"></ion-img> -->
 
     
   
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button [color]="!buttonActive ? 'primary' : 'medium'" (click)="onClickRandom()">
+    <ion-fab-button #fab (click)="onClickRandom()" [color]="!(fab.activated) ? 'primary' : 'medium'">
       <ion-icon name="shuffle-outline"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">

@@ -14,7 +14,6 @@ import { HttpClientModule } from  '@angular/common/http';
 // Added by me
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { Base64 } from '@ionic-native/base64/ngx';
     SplashScreen,
     FileTransfer,
     File,
-    FilePath,
     Base64,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

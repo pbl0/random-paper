@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'reddit-settings',
     loadChildren: () => import('./reddit-settings/reddit-settings.module').then( m => m.RedditSettingsPageModule)
   },
+  {
+    path: 'unsplash-settings',
+    loadChildren: () => import('./unsplash-settings/unsplash-settings.module').then( m => m.UnsplashSettingsPageModule)
+  },
 ];
 
 @NgModule({

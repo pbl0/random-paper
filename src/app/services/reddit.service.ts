@@ -82,9 +82,11 @@ export class RedditService {
 	addSub(sub: Sub){
 		this.settings.subs.push(sub);
 		this.saveStorage();
+		
 	}
 
 	saveStorage() {
+		this.resetWallpapers();
 		localStorage.setItem("reddit-settings", JSON.stringify(this.settings));
 	}
 
@@ -94,6 +96,10 @@ export class RedditService {
 		} else {
 			this.settings = {subs:[], sorting: 'hot', limit:1};
 		}
+	}
+
+	resetWallpapers(){
+		this.wallpapers = [];
 	}
 }
 
