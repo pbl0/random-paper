@@ -1,6 +1,6 @@
 
 
-<ion-content [fullscreen]="true">
+<ion-content color="dark"[fullscreen]="true">
   
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -9,13 +9,13 @@
   </ion-header>
 
   
-  <ion-img #img (ionImgWillLoad)="presentLoading()" (ionImgDidLoad)="loadingController.dismiss()" *ngIf="wallpaper" [src]="wallpaper.url"></ion-img> 
+  <ion-img #img (ionImgDidLoad)="loadingController.dismiss()" *ngIf="wallpaper" [src]="wallpaper.url"></ion-img> 
   <!-- <ion-img *ngIf="file.dataDirectory  + 'wall.png'" [src]="getPath(file.externalApplicationStorageDirectory + 'wall.png')"></ion-img> -->
 
     
   
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button #fab (click)="onClickRandom()" [color]="!(fab.activated) ? 'primary' : 'medium'">
+    <ion-fab-button #fab (click)="onClickRandom()"[color]="fabColor">
       <ion-icon name="shuffle-outline"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
@@ -26,7 +26,7 @@
   </ion-fab>
 
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
-    <ion-fab-button color="dark">
+    <ion-fab-button color="light">
       <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
@@ -34,7 +34,7 @@
         <ion-icon name="heart"></ion-icon>
       </ion-fab-button>
       
-      <ion-fab-button color="light" onclick="window.open('https://www.github.com/pbl0', '_system', 'location=yes'); return false;">
+      <ion-fab-button color="light" (click)="onClickGithub()">
         <ion-icon name="logo-github"></ion-icon>
       </ion-fab-button>
         

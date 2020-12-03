@@ -7,11 +7,10 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-	<ion-list>
-		<ion-item [routerLink]="['/reddit-settings']">
-			<ion-label>Reddit</ion-label>
-			<ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+<ion-content >
+	<ion-list >
+		<ion-item  detail>
+			<ion-label [routerLink]="['/reddit-settings']">Reddit</ion-label>
 			<ion-toggle
 				(ionChange)="onIonChange()"
 				[(ngModel)]="settingsService.redditIsOn"
@@ -19,9 +18,10 @@
 				name="reddit"
 			></ion-toggle>
 		</ion-item>
-		<ion-item [routerLink]="['/unsplash-settings']">
-			<ion-label>Unsplash</ion-label>
-			<ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+		<ion-item  detail >
+			
+				<ion-label [routerLink]="['/unsplash-settings']" >Unsplash</ion-label>
+			
 			<ion-toggle
 				(ionChange)="onIonChange()"
 				[(ngModel)]="settingsService.unsplashIsOn"
@@ -29,5 +29,14 @@
 				name="unsplash"
 			></ion-toggle>
 		</ion-item>
+		<ion-item (click)="deleteCache()">
+			<ion-label>Delete Cache</ion-label>
+			<ion-icon slot="end" name="trash-outline"></ion-icon>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-label>Dark Mode</ion-label>
+			<ion-toggle (click)="changeDark()" [ngModel]="darkMode" slot="end"></ion-toggle>
+		  </ion-item>
+		
 	</ion-list>
 </ion-content>
