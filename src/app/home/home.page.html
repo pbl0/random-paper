@@ -1,31 +1,60 @@
-
-
-<ion-content  [fullscreen]="true">
-  
+<ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="imgbox" *ngIf="wallpaper">
+    <ion-img
 
-  
-  <ion-img #img (ionImgDidLoad)="loadingController.dismiss()" *ngIf="wallpaper" [src]="wallpaper.url"></ion-img> 
+      [ngClass]="{ 
+        'animate__fadeInDownBig': isImgLoaded,
+        'animate__fadeOutDownBig': !isImgLoaded
+      }"
+      class="center-fit animate__animated animate__fast"
+      (ionImgDidLoad)="imgLoad()"
+      (ionImgWillLoad)="isImgLoaded = false"
+      [src]="wallpaper.url"
+    ></ion-img>
+  </div>
+
   <!-- <ion-img *ngIf="file.dataDirectory  + 'wall.png'" [src]="getPath(file.externalApplicationStorageDirectory + 'wall.png')"></ion-img> -->
 
-    
-  
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button #fab (click)="onClickRandom()"[color]="fabColor">
+  <ion-fab
+    vertical="bottom"
+    horizontal="center"
+    slot="fixed"
+  >
+    <ion-fab-button
+    class="animate__animated animate__pulse animate__infinite animate__slow"
+    #fab (click)="onClickRandom()">
       <ion-icon name="shuffle-outline"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button (click)="clickChangePaper()" color="light">
-        <ion-icon name="image-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
+    
   </ion-fab>
 
-  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+  <ion-fab *ngIf="isImgLoaded"
+    vertical="top"
+    horizontal="end"
+    slot="fixed"
+    class="animate__animated animate__fadeInDown">
+    <ion-fab-button size="small" (click)="clickChangePaper()" color="light">
+      <ion-icon name="image-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button size="small" (click)="clickChangeLock()" color="light">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button size="small" (click)="clickShare()" color="light">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab
+    class="animate__animated animate__fadeInUp"
+    horizontal="start"
+    vertical="bottom"
+    slot="fixed"
+  >
     <ion-fab-button color="light">
       <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
     </ion-fab-button>
@@ -33,16 +62,14 @@
       <ion-fab-button (click)="debug()" color="light">
         <ion-icon name="heart"></ion-icon>
       </ion-fab-button>
-      
+
       <ion-fab-button color="light" (click)="onClickGithub()">
         <ion-icon name="logo-github"></ion-icon>
       </ion-fab-button>
-        
+
       <ion-fab-button [routerLink]="['/settings']" color="light">
         <ion-icon name="settings"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-
-  
 </ion-content>

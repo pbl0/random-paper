@@ -9,6 +9,7 @@ import {
 	ChildData,
 	RedditResponse,
 } from "../interfaces/reddit-response";
+import { Wallpaper } from '../interfaces/wallpaper';
 
 @Injectable({
 	providedIn: "root",
@@ -39,7 +40,7 @@ export class RedditService {
 	
 					for (let item of arr) {
 						const wallpaper: Wallpaper = {
-							url: item.data.url,
+							origin: item.data.url,
 							author: item.data.author,
 						};
 						this.wallpapers.push(wallpaper);
@@ -103,9 +104,4 @@ export class RedditService {
 	}
 }
 
-export interface Wallpaper {
-	url: string;
-	author: string;
-	path?: string;
-	fileName?: string;
-}
+

@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { Collection, UnsplashSettings } from '../interfaces/unsplash-settings';
-import { Wallpaper } from "./reddit.service";
+import { Wallpaper } from '../interfaces/wallpaper';
+
 
 @Injectable({
 	providedIn: "root",
@@ -24,7 +25,7 @@ export class UnsplashService {
     const url = `/collection/${ collectionId }?${this.indexDummy}`;
     this.indexDummy++;
 		const wallpaper: Wallpaper = {
-			url: this.baseUrl + url,
+			origin: this.baseUrl + url,
 			author: "Unsplash Source",
 		};
 		return of(wallpaper);
@@ -49,7 +50,7 @@ export class UnsplashService {
 		if (localStorage.getItem("unsplash-settings")) {
 			this.settings = JSON.parse(localStorage.getItem("unsplash-settings"));
 		} else {
-			this.settings = {collections:[]};
+			this.settings = {collections:[new Collection('1111702')]};
 		}
 	}
   
