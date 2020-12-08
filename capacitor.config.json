@@ -6,9 +6,8 @@
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
-      "launchAutoHide": true,
       "showSpinner": false,
-      "SplashMaintainAspectRatio": true
+      "SplashMaintainAspectRatio": false
       
     }
   },

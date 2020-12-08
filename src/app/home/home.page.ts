@@ -9,10 +9,11 @@ import { Base64 } from "@ionic-native/base64/ngx";
 
 import { Capacitor, Plugins } from "@capacitor/core";
 import "capacitor-plugin-wallpaper";
-import { IonFab, LoadingController } from "@ionic/angular";
+import { IonFab } from "@ionic/angular";
 import { SettingsService } from "../services/settings.service";
 
 import { Wallpaper } from "../interfaces/wallpaper";
+import { LoadingService } from '../services/loading.service';
 
 // import { Wallpaper } from 'capacitor-plugin-wallpaper';
 
@@ -39,14 +40,14 @@ export class HomePage {
     private transfer: FileTransfer,
     public file: File,
     private base64: Base64,
-    public loadingController: LoadingController
+    private loadingService: LoadingService
   ) {}
 
   onClickRandom() {
     let service = this.settingsService.pickRandomService();
 
     if (service) {
-      this.presentLoading();
+      this.loadingService.presentLoading();
       service.getPicture().subscribe((resp: Wallpaper) => {
         // this.wallpaper.author = resp.author;
         this.download(resp);
@@ -54,20 +55,19 @@ export class HomePage {
       });
     } else {
       console.log("No service active");
-      this.loadingController.dismiss();
       this.showToast("There are no available sources");
     }
   }
 
   clickChangePaper() {
-    this.presentLoading();
+    this.loadingService.presentLoading();
     this.getBase64(this.wallpaper.path, "wall");
     // this.download();
   }
 
   clickChangeLock() {
     // TODO: test on non-MIUI system
-    this.presentLoading();
+    this.loadingService.presentLoading();
     this.getBase64(this.wallpaper.path, "lock");
     // this.download();
   }
@@ -125,7 +125,7 @@ export class HomePage {
         )
         .then(
           (entry) => {
-            this.loadingController.dismiss();
+            this.loadingService.dismiss();
             if (type == 'wall'){
               this.showToast("Wallpaper has been set");
             } else if ('lock') {
@@ -184,16 +184,7 @@ export class HomePage {
     console.log("love u");
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: "Please wait...",
-      duration: 10000,
-    });
-    await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log("Loading dismissed !!");
-  }
 
   async onClickGithub() {
     await Browser.open({ url: "https://github.com/pbl0/randomPaper" });
@@ -202,7 +193,7 @@ export class HomePage {
   imgLoad() {
     setTimeout(() => {
       this.isImgLoaded = true;
-      this.loadingController.dismiss();
+      this.loadingService.dismiss();
     }, 200);
   }
 
