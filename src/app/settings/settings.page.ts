@@ -3,6 +3,9 @@ import { SettingsService } from "../services/settings.service";
 import { File } from "@ionic-native/file/ngx";
 import { LoadingService } from "../services/loading.service";
 
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 @Component({
   selector: "app-settings",
   templateUrl: "./settings.page.html",
@@ -14,10 +17,17 @@ export class SettingsPage implements OnInit {
   constructor(
     public settingsService: SettingsService,
     private file: File,
-    private loadingService: LoadingService
-  ) {}
+    private loadingService: LoadingService,
+    private statusBar: StatusBar
+    // private backgroundMode: BackgroundMode
+  ) {
+    this.statusBar.overlaysWebView(false);
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.backgroundMode.setDefaults({ silent: true });
+    
+  }
 
   onIonChange() {
     this.setStorage();
@@ -63,4 +73,14 @@ export class SettingsPage implements OnInit {
     });
     this.loadingService.dismiss();
   }
+
+  /* clickEnableBackground(){
+    this.backgroundMode.enable();
+    setInterval(()=>{
+      console.log('Hello world')
+    }, 1000)
+  }
+  clickDisableBackground(){
+    this.backgroundMode.disable();
+  } */
 }

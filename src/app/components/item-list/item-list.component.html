@@ -1,20 +1,20 @@
 <ion-list>
+  <ion-list-header>
+    <strong> Collections </strong>
+  </ion-list-header>
   <ion-item>
-    <ion-label position="floating">Add subreddit</ion-label>
+    <ion-label position="floating">Add collection</ion-label>
     <ion-input
-      (keyup.enter)="addSub()"
-      [(ngModel)]="sub.name"
+      (keyup.enter)="addCollection()"
+      [(ngModel)]="collection.name"
       type="text"
     ></ion-input>
   </ion-item>
 </ion-list>
-<ion-list *ngIf="settings.subs.length">
-  <ion-list-header *ngIf="settings.subs.length">
-    <ion-label>Subreddits</ion-label>
-  </ion-list-header>
+<ion-list *ngIf="settings.collections.length">
   <ion-item-sliding
-    class="animate__animated animate__fadeInDown"
-    *ngFor="let item of settings.subs; let i = index"
+    class="animate__animated animate__fadeInDown animate__fast"
+    *ngFor="let item of settings.collections; let i = index"
   >
     <ion-item>
       <ion-checkbox

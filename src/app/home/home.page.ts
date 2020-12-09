@@ -14,6 +14,7 @@ import { SettingsService } from "../services/settings.service";
 
 import { Wallpaper } from "../interfaces/wallpaper";
 import { LoadingService } from '../services/loading.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 // import { Wallpaper } from 'capacitor-plugin-wallpaper';
 
@@ -40,8 +41,11 @@ export class HomePage {
     private transfer: FileTransfer,
     public file: File,
     private base64: Base64,
-    private loadingService: LoadingService
-  ) {}
+    private loadingService: LoadingService,
+    private statusBar: StatusBar
+  ) {
+    this.statusBar.overlaysWebView(true);
+  }
 
   onClickRandom() {
     let service = this.settingsService.pickRandomService();

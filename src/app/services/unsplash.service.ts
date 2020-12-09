@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { Collection, UnsplashSettings } from '../interfaces/unsplash-settings';
+import { Collection, Term, UnsplashSettings, User } from '../interfaces/unsplash-settings';
 import { Wallpaper } from '../interfaces/wallpaper';
 
 
@@ -10,8 +10,10 @@ import { Wallpaper } from '../interfaces/wallpaper';
 export class UnsplashService {
   public baseUrl: string;
   public settings: UnsplashSettings;
-  private indexDummy = 0;
+  
+
 	constructor() {
+    // https://source.unsplash.com/collection/190727/1080x2340
     this.baseUrl = "https://source.unsplash.com";
     this.loadStorage();
   }
@@ -22,8 +24,14 @@ export class UnsplashService {
   }
 
 	getRandomFromCollection(collectionId: string): Observable<Wallpaper> {
-    const url = `/collection/${ collectionId }?${this.indexDummy}`;
-    this.indexDummy++;
+    let url: string;
+    if (this.settings.resolutionOn){
+      url = `/collection/${ collectionId }/${this.settings.width}x${this.settings.height}`;
+    } else {
+      url = `/collection/${ collectionId }`;
+    }
+     
+    
 		const wallpaper: Wallpaper = {
 			origin: this.baseUrl + url,
 			author: "Unsplash Source",
@@ -45,12 +53,24 @@ export class UnsplashService {
   saveStorage() {
 		localStorage.setItem("unsplash-settings", JSON.stringify(this.settings));
   }
+
+  getCollections(): Collection[]{
+    return this.settings.collections;
+  }
+
+  getUsers(): User[]{
+    return this.settings.users;
+  }
+
+  getTerms(): Term[]{
+    return this.settings.terms;
+  }
   
   loadStorage() {
 		if (localStorage.getItem("unsplash-settings")) {
 			this.settings = JSON.parse(localStorage.getItem("unsplash-settings"));
 		} else {
-			this.settings = {collections:[new Collection('1111702')]};
+			// this.settings = {collections:[new Collection('1111702')]};
 		}
 	}
   

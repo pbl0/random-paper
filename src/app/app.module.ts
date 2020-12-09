@@ -15,6 +15,7 @@ import { HttpClientModule } from  '@angular/common/http';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { Base64 } from '@ionic-native/base64/ngx';
     FileTransfer,
     File,
     Base64,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    BackgroundMode
   ],
   bootstrap: [AppComponent]
 })
