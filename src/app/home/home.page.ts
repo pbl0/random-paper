@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 import {
   FileTransfer,
@@ -14,14 +14,13 @@ import { SettingsService } from "../services/settings.service";
 
 import { Wallpaper } from "../interfaces/wallpaper";
 import { LoadingService } from '../services/loading.service';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-// import { Wallpaper } from 'capacitor-plugin-wallpaper';
 
 const { Wallpaper } = Plugins;
 const { Browser } = Plugins;
 const { Toast } = Plugins;
 const { Share } = Plugins;
+const { StatusBar } = Plugins;
 @Component({
   selector: "app-home",
   templateUrl: "home.page.html",
@@ -42,9 +41,14 @@ export class HomePage {
     public file: File,
     private base64: Base64,
     private loadingService: LoadingService,
-    private statusBar: StatusBar
+    
   ) {
-    this.statusBar.overlaysWebView(true);
+    
+  }
+  ionViewWillEnter(){
+    StatusBar.setOverlaysWebView({
+      overlay: true
+    })
   }
 
   onClickRandom() {
@@ -146,46 +150,8 @@ export class HomePage {
     });
   }
 
-  debug() {
-    this.file.listDir(this.file.cacheDirectory, "walls").then((entry) => {
-      console.log(entry);
-    });
-
-    /* 		this.file.listDir(this.file.applicationDirectory,'public').then((entry) =>{
-			console.log('applicationDirectory',entry);
-		}) */
-    /* 		this.file.listDir(this.file.applicationStorageDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-    this.file.listDir(this.file.dataDirectory, "..").then((entry) => {
-      console.log(entry);
-    });
-    /* 		this.file.listDir(this.file.documentsDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-    /* 		this.file.listDir(this.file.externalApplicationStorageDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-    /* 		this.file.listDir(this.file.externalCacheDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-    /* 		this.file.listDir(this.file.externalDataDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-    /* 		this.file.listDir(this.file.externalRootDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-    /* 		this.file.listDir(this.file.sharedDirectory,'..').then((entry) =>{
-			console.log(entry);
-		})
-		this.file.listDir(this.file.syncedDataDirectory,'..').then((entry) =>{
-			console.log(entry);
-		})
-		this.file.listDir(this.file.tempDirectory,'..').then((entry) =>{
-			console.log(entry);
-		}) */
-
-    console.log("love u");
+  async onClickDonate() {
+    await Browser.open({ url: "https://www.paypal.com/donate?hosted_button_id=UGXMR9D6PE56W" });
   }
 
 

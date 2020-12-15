@@ -3,8 +3,9 @@ import { SettingsService } from "../services/settings.service";
 import { File } from "@ionic-native/file/ngx";
 import { LoadingService } from "../services/loading.service";
 
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+// import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Plugins } from "@capacitor/core";
+const { StatusBar } = Plugins;
 
 @Component({
   selector: "app-settings",
@@ -18,15 +19,21 @@ export class SettingsPage implements OnInit {
     public settingsService: SettingsService,
     private file: File,
     private loadingService: LoadingService,
-    private statusBar: StatusBar
+    // private statusBar: StatusBar
     // private backgroundMode: BackgroundMode
   ) {
-    this.statusBar.overlaysWebView(false);
+    
   }
 
   ngOnInit() {
-    // this.backgroundMode.setDefaults({ silent: true });
+
     
+  }
+
+  ionViewWillEnter(){
+    StatusBar.setOverlaysWebView({
+      overlay: false
+    })
   }
 
   onIonChange() {

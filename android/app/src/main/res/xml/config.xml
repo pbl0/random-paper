@@ -6,13 +6,6 @@
     <param name="android-package" value="com.badrit.Base64.Base64Plugin"/>
   </feature>
 
-  <feature name="BackgroundMode">
-    <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundMode"/>
-  </feature>
-  <feature name="BackgroundModeExt">
-    <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundModeExt"/>
-  </feature>
-
   <feature name="File">
     <param name="android-package" value="org.apache.cordova.file.FileUtils"/>
     <param name="onload" value="true"/>
@@ -22,18 +15,13 @@
     <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer"/>
   </feature>
 
+  <feature name="Device">
+    <param name="android-package" value="org.apache.cordova.device.Device"/>
+  </feature>
+
   <feature name="Whitelist">
     <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin"/>
     <param name="onload" value="true"/>
-  </feature>
-
-  <feature name="StatusBar">
-    <param name="android-package" value="org.apache.cordova.statusbar.StatusBar"/>
-    <param name="onload" value="true"/>
-  </feature>
-
-  <feature name="Device">
-    <param name="android-package" value="org.apache.cordova.device.Device"/>
   </feature>
 
   

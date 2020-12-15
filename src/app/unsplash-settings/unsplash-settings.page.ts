@@ -21,40 +21,21 @@ export class UnsplashSettingsPage implements OnInit {
 
 	ngOnInit() {}
 
-	addCollection() {
-		if (this.collection.name.length === 0) {
-			return;
-		}
-		const newCollection = new Collection(this.collection.name);
-		this.unsplashService.addCollection(newCollection);
-
-		this.collection.name = "";
-		this.unsplashService.saveStorage();
-	}
-
-	changeCheck(collection: Collection) {
-		// console.log(item);
-		const pendientes = this.settings.collections.filter(
-			(itemData) => !itemData.on
-		).length;
-		if (pendientes === 0) {
-			this.collection.on = true;
-		} else {
-			this.collection.on = false;
-		}
-
-		this.unsplashService.saveStorage();
-	}
-
-	delete(i: number) {
-		this.settings.collections.splice(i, 1);
-		this.unsplashService.saveStorage();
-	}
-
 	change(){
 		
 		this.unsplashService.saveStorage();
 	}
+
+	getCollections(){
+		return this.unsplashService.getCollections();
+	}
+	getUsers(){
+		return this.unsplashService.getUsers();
+	}
+	getTerms(){
+		return this.unsplashService.getTerms();
+	}
+
 
 /* 	detectResolution(){
 		this.settings.height = this.platform.height();

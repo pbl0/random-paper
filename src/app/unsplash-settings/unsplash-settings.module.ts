@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { UnsplashSettingsPageRoutingModule } from './unsplash-settings-routing.module';
 
 import { UnsplashSettingsPage } from './unsplash-settings.page';
+import { ItemListComponent } from '../components/item-list/item-list.component';
+
+
 
 @NgModule({
   imports: [
@@ -15,6 +18,6 @@ import { UnsplashSettingsPage } from './unsplash-settings.page';
     IonicModule,
     UnsplashSettingsPageRoutingModule
   ],
-  declarations: [UnsplashSettingsPage]
+  declarations: [UnsplashSettingsPage, ItemListComponent]
 })
 export class UnsplashSettingsPageModule {}

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Collection, Term, UnsplashSettings, User } from 'src/app/interfaces/unsplash-settings';
+import { Collection, Item, Term, UnsplashSettings, User } from 'src/app/interfaces/unsplash-settings';
 import { UnsplashService } from 'src/app/services/unsplash.service';
 
 @Component({
@@ -8,10 +8,12 @@ import { UnsplashService } from 'src/app/services/unsplash.service';
   styleUrls: ['./item-list.component.scss'],
 })
 export class ItemListComponent implements OnInit {
-  item: Collection | User | Term;
-  @Input() itemList: Collection[] | User[]| Term[];
+  @Input() itemName: string;
+  item: Item;
+  @Input() itemList: Item[];
+  @Input() isOn: boolean;
   constructor(private unsplashService: UnsplashService) { 
-    
+    this.item = { name: "", on: true };
   }
 
   ngOnInit() {}
@@ -34,10 +36,21 @@ export class ItemListComponent implements OnInit {
 		if (this.item.name.length === 0) {
 			return;
 		}
-		const newCollection = new Collection(this.item.name);
-		this.unsplashService.addCollection(newCollection);
+		const newItem = new Item(this.item.name);
+		this.unsplashService.addItem(newItem, this.itemList);
 
 		this.item.name = "";
+		this.unsplashService.saveStorage();
+  }
+
+  changeToggle(){
+    // console.log(this.isOn);
+    this.unsplashService.setOn(this.isOn, this.itemName);
+		this.unsplashService.saveStorage();
+	}
+  
+  delete(i: number) {
+		this.itemList.splice(i, 1);
 		this.unsplashService.saveStorage();
 	}
 

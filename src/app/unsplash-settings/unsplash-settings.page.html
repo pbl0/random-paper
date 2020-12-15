@@ -9,24 +9,20 @@
 
 <ion-content class="animate__animated animate__fadeInLeft animate__faster">
   <ion-list>
-    <ion-item>
-      <ion-list-header>
-        <strong>Resolution</strong>
-      </ion-list-header>
+    <ion-list-header>
+      <ion-label>Resolution</ion-label>
       <ion-toggle
         (ionChange)="change()"
         [(ngModel)]="settings.resolutionOn"
-        slot="end"
-        name="reddit"
       ></ion-toggle>
-    </ion-item>
+    </ion-list-header>
 
     <!-- <ion-item (click)="detectResolution()">
       <ion-label> Auto-detect resolution </ion-label>
     </ion-item> -->
     <ion-item-group *ngIf="settings.resolutionOn">
       <ion-item>
-        <ion-label>Height</ion-label>
+        <ion-label position="floating">Height</ion-label>
         <ion-input
           [(ngModel)]="settings.height"
           (ionChange)="change()"
@@ -34,7 +30,7 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Width</ion-label>
+        <ion-label position="floating">Width</ion-label>
         <ion-input
           [(ngModel)]="settings.width"
           (ionChange)="change()"
@@ -42,42 +38,19 @@
         ></ion-input>
       </ion-item>
     </ion-item-group>
-    
+
     <ion-item-divider></ion-item-divider>
   </ion-list>
 
-  <ion-list>
-    <ion-list-header>
-      <strong> Collections </strong>
-    </ion-list-header>
-    <ion-item>
-      <ion-label position="floating">Add collection</ion-label>
-      <ion-input
-        (keyup.enter)="addCollection()"
-        [(ngModel)]="collection.name"
-        type="text"
-      ></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-list *ngIf="settings.collections.length">
-    <ion-item-sliding
-      class="animate__animated animate__fadeInDown animate__fast"
-      *ngFor="let item of settings.collections; let i = index"
-    >
-      <ion-item>
-        <ion-checkbox
-          (ionChange)="changeCheck(item)"
-          [(ngModel)]="item.on"
-          slot="start"
-        ></ion-checkbox>
-        <ion-label> {{item.name}} </ion-label>
-      </ion-item>
+  <app-item-list
+    [itemName]="'collection'"
+    [itemList]="getCollections()"
+    [isOn]="settings.collectionsOn"
+  ></app-item-list>
+  <app-item-list
+    [itemName]="'user'"
+    [itemList]="getUsers()"
+    [isOn]="settings.usersOn"
+  ></app-item-list>
 
-      <ion-item-options side="end">
-        <ion-item-option (click)="delete(i)" color="danger">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
 </ion-content>

@@ -1,20 +1,27 @@
 <ion-list>
   <ion-list-header>
-    <strong> Collections </strong>
+    <ion-label>
+       {{itemName + 's' |titlecase}}
+    </ion-label>
+    <ion-toggle
+        (ionChange)="changeToggle()"
+        [(ngModel)]="isOn"
+    ></ion-toggle>
+   
   </ion-list-header>
-  <ion-item>
-    <ion-label position="floating">Add collection</ion-label>
+  <ion-item *ngIf="isOn">
+    <ion-label position="floating">Add {{itemName}}</ion-label>
     <ion-input
-      (keyup.enter)="addCollection()"
-      [(ngModel)]="collection.name"
+      (keyup.enter)="addItem()"
+      [(ngModel)]="item.name"
       type="text"
     ></ion-input>
   </ion-item>
 </ion-list>
-<ion-list *ngIf="settings.collections.length">
+<ion-list *ngIf="itemList.length && isOn">
   <ion-item-sliding
     class="animate__animated animate__fadeInDown animate__fast"
-    *ngFor="let item of settings.collections; let i = index"
+    *ngFor="let item of itemList; let i = index"
   >
     <ion-item>
       <ion-checkbox
