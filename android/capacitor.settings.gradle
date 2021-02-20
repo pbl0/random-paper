@@ -2,5 +2,5 @@
 include ':capacitor-android'
 project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
 
-include ':capacitor-plugin-wallpaper'
-project(':capacitor-plugin-wallpaper').projectDir = new File('../node_modules/capacitor-plugin-wallpaper/android')
+include ':capacitor-wallpaper-plugin'
+project(':capacitor-wallpaper-plugin').projectDir = new File('../node_modules/capacitor-wallpaper-plugin/android')

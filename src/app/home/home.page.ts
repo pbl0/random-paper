@@ -8,7 +8,7 @@ import { File } from "@ionic-native/file/ngx";
 import { Base64 } from "@ionic-native/base64/ngx";
 
 import { Capacitor, Plugins } from "@capacitor/core";
-import "capacitor-plugin-wallpaper";
+import "capacitor-wallpaper-plugin";
 import { IonFab } from "@ionic/angular";
 import { SettingsService } from "../services/settings.service";
 

@@ -1,15 +1,15 @@
 # RandomPaper
-Ionic capacitor app that generates a random wallpaper from different sources
+Ionic capacitor app that generates a random wallpaper from different sources.
 
 
 ### Sources:
-- Unsplash
-- Reddit
+- Unsplash source API
+- Reddit json API
 
 ### Todo:
 - [ ] Schedule automatic wallpapers changes
-- [ ] Implement Unsplash search terms to filter results
 - [ ] iOS support
+- [ ] Test on more Android versions and devices
 
 
 [![donateImg]](https://www.paypal.com/donate?hosted_button_id=UGXMR9D6PE56W)
